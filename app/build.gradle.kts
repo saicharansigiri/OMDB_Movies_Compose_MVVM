@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -5,6 +8,11 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
 }
+
+// Load the keys.properties file
+val keystorePropertiesFile = rootProject.file("keys.properties")
+val keystoreProperties = Properties()
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
     namespace = "com.example.locomovies"
@@ -21,6 +29,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField(type = "String", name = "OMDB_API_KEY", value = "${keystoreProperties["OMDB_API_KEY"]}")
     }
 
     buildTypes {
@@ -41,6 +51,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
