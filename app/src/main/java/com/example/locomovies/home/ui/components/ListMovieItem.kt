@@ -1,4 +1,4 @@
-package com.example.locomovies.ui.components
+package com.example.locomovies.home.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,7 +20,7 @@ import com.example.locomovies.R
 import com.example.locomovies.data.model.Movie
 
 @Composable
-fun MovieItem(movie: Movie) {
+fun ListMovieItem(movie: Movie) {
     Card(modifier = Modifier.padding(8.dp)) {
         Row(
             modifier = Modifier
@@ -56,5 +56,5 @@ fun PreviewItem() {
         type = "movie",
         poster = "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
     )
-    MovieItem(movie = movie)
+    ListMovieItem(movie = movie)
 }

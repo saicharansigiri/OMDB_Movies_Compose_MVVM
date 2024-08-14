@@ -1,4 +1,4 @@
-package com.example.locomovies.ui.components
+package com.example.locomovies.home.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -30,7 +30,6 @@ fun SortButton() {
     val selectedSortOption = remember { mutableStateOf("Ranking") }
 
     Row(modifier = Modifier.padding(8.dp),verticalAlignment = Alignment.CenterVertically,horizontalArrangement = Arrangement.Center) {
-        Spacer(modifier = Modifier.weight(1f))
         Text("Sort by", style = MaterialTheme.typography.bodyMedium)
         Spacer(modifier = Modifier.width(8.dp))
 

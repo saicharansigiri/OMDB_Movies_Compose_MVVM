@@ -1,4 +1,4 @@
-package com.example.locomovies.ui.theme
+package com.example.locomovies.home.ui.theme
 
 import android.app.Activity
 import android.os.Build
