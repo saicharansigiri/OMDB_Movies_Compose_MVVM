@@ -19,11 +19,11 @@ class MainViewModel @Inject constructor(private val apiService: OmdbApiService) 
 
     fun getMoviesList(searchQuery: String) {
         viewModelScope.launch {
-            delay(5000)
             val movies = apiService.getMoviesList(searchQuery)
             _moviesList.value = movies.list
         }
     }
+
 
 
 
