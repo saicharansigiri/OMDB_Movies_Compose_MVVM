@@ -96,6 +96,9 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
+    //ok http
+    implementation(libs.okhttp)
+
 
 }
 
