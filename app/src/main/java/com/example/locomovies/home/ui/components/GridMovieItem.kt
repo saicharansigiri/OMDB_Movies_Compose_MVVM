@@ -1,5 +1,6 @@
 package com.example.locomovies.home.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.locomovies.R
@@ -24,6 +26,7 @@ import com.example.locomovies.data.model.Movie
 
 @Composable
 fun GridMovieItem(movie: Movie) {
+    // TODO retry image load if thrown exception
     Card(
         modifier = Modifier
             .padding(8.dp)
@@ -31,14 +34,22 @@ fun GridMovieItem(movie: Movie) {
             .clip(RoundedCornerShape(12.dp))
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AsyncImage(
                 model = movie.poster,
                 contentDescription = null,
+                placeholder = painterResource(R.drawable.ic_placeholder),
+                error = painterResource(R.drawable.ic_broken_image_24),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                onError = {
+                    Log.e("LOCO", it.result.throwable.toString())
+                }
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -59,3 +70,4 @@ fun GridMovieItem(movie: Movie) {
         }
     }
 }
+
