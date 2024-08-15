@@ -105,6 +105,10 @@ dependencies {
     //lottie
     implementation(libs.lottie.compose)
 
+    //paging 3
+    implementation ( libs.androidx.paging.runtime.ktx)
+    implementation (libs.androidx.paging.compose)
+
 }
 
 // Allow references to generated code
