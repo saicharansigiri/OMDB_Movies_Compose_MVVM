@@ -1,4 +1,4 @@
-package com.example.locomovies.home.ui.components
+package com.example.locomovies.ui.components
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.locomovies.R
@@ -54,6 +55,8 @@ fun GridMovieItem(movie: Movie) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = movie.title,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
             Spacer(modifier = Modifier.height(4.dp))

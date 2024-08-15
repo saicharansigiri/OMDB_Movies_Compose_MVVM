@@ -1,4 +1,4 @@
-package com.example.locomovies.home.ui.components
+package com.example.locomovies.ui.components
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.SizeTransform

@@ -1,4 +1,4 @@
-package com.example.locomovies.home
+package com.example.locomovies
 
 import android.os.Bundle
 import android.util.Log
@@ -36,14 +36,14 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.locomovies.data.model.Movie
-import com.example.locomovies.home.ui.components.GridMovieItem
-import com.example.locomovies.home.ui.components.GridToggleButton
-import com.example.locomovies.home.ui.components.ListMovieItem
-import com.example.locomovies.home.ui.components.SearchBar
-import com.example.locomovies.home.ui.components.SortButton
-import com.example.locomovies.home.ui.theme.LocoMoviesTheme
-import com.example.locomovies.home.viewmodel.MainViewModel
-import com.example.locomovies.home.viewmodel.SortOrder
+import com.example.locomovies.ui.components.GridMovieItem
+import com.example.locomovies.ui.components.GridToggleButton
+import com.example.locomovies.ui.components.ListMovieItem
+import com.example.locomovies.ui.components.SearchBar
+import com.example.locomovies.ui.components.SortButton
+import com.example.locomovies.ui.theme.LocoMoviesTheme
+import com.example.locomovies.viewmodel.MainViewModel
+import com.example.locomovies.viewmodel.SortOrder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

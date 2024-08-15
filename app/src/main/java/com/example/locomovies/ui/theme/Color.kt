@@ -1,4 +1,4 @@
-package com.example.locomovies.home.ui.theme
+package com.example.locomovies.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

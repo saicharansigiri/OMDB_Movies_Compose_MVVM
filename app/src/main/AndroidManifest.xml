@@ -17,14 +17,8 @@
         android:theme="@style/Theme.LocoMovies"
         tools:targetApi="31" >
         <activity
-            android:name=".splash.SplashActivity"
-            android:exported="false"
-            android:label="@string/title_activity_splash"
-            android:theme="@style/Theme.LocoMovies" />
-        <activity
-            android:name=".home.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.LocoMovies" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

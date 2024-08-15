@@ -1,4 +1,4 @@
-package com.example.locomovies.home.viewmodel
+package com.example.locomovies.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
-import java.lang.Thread.State
 import javax.inject.Inject
 
 @HiltViewModel
@@ -52,7 +51,7 @@ class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepo
 
     private fun getSearchResultStream(query: String): Flow<PagingData<Movie>> {
         return Pager(
-            config = PagingConfig(pageSize = 20),
+            config = PagingConfig(pageSize = 10),
             pagingSourceFactory = { MoviesPagingSource(moviesRepository, query) }
         ).flow
     }

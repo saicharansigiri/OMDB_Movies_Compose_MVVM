@@ -1,4 +1,4 @@
-package com.example.locomovies.home.ui.components
+package com.example.locomovies.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.locomovies.R
-import com.example.locomovies.home.viewmodel.SortOrder
+import com.example.locomovies.viewmodel.SortOrder
 
 
 @Composable
