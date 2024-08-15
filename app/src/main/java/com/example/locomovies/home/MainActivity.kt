@@ -24,6 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,6 +43,7 @@ import com.example.locomovies.home.ui.components.SearchBar
 import com.example.locomovies.home.ui.components.SortButton
 import com.example.locomovies.home.ui.theme.LocoMoviesTheme
 import com.example.locomovies.home.viewmodel.MainViewModel
+import com.example.locomovies.home.viewmodel.SortOrder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,6 +62,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Content() {
         var isGridMode by remember { mutableStateOf(true) }
+        val currentSortOrder = viewModel.sortOrder.collectAsState()
 
         LocoMoviesTheme {
             Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -79,7 +82,9 @@ class MainActivity : ComponentActivity() {
                             },
                         )
                         Spacer(modifier = Modifier.weight(1f))
-                        SortButton()
+                        SortButton(currentSortOrder.value) {
+                            viewModel.updateSortOrder(it)
+                        }
                     }
 
                     AnimatedContent(
@@ -148,12 +153,29 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun MoviesListContent(isGridMode: Boolean, movies: LazyPagingItems<Movie>) {
-        // TODO Sort the movies here
+    fun MoviesListContent(
+        isGridMode: Boolean,
+        movies: LazyPagingItems<Movie>
+    ) {
+
+        val sortOrder = viewModel.sortOrder.collectAsState()
+
+        val sortedMoviesList by remember {
+            derivedStateOf {
+                val unsortedList = movies.itemSnapshotList.items
+                when (sortOrder.value) {
+                    SortOrder.RATING_DESCENDING -> unsortedList.sortedByDescending { it.rating }
+                    SortOrder.RATING_ASCENDING -> unsortedList.sortedBy { it.rating }
+                    SortOrder.YEAR_DESCENDING -> unsortedList.sortedByDescending { it.year }
+                    SortOrder.YEAR_ASCENDING -> unsortedList.sortedBy { it.year }
+                }
+            }
+        }
+
         if (isGridMode) {
             LazyVerticalGrid(columns = GridCells.Fixed(2)) {
-                items(movies.itemCount) { pos ->
-                    movies[pos]?.let { GridMovieItem(movie = it) }
+                items(sortedMoviesList.size) { pos ->
+                    movies[pos]?.let { GridMovieItem(movie = sortedMoviesList[pos]) }
                 }
 
                 item {
@@ -169,8 +191,8 @@ class MainActivity : ComponentActivity() {
             }
         } else {
             LazyColumn {
-                items(movies.itemCount) { pos ->
-                    movies[pos]?.let { ListMovieItem(movie = it) }
+                items(sortedMoviesList.size) { pos ->
+                    movies[pos]?.let { ListMovieItem(movie = sortedMoviesList[pos]) }
                 }
 
                 item {

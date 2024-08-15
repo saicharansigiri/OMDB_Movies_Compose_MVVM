@@ -55,7 +55,7 @@ fun ListMovieItem(movie: Movie) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 CapsuleText(text = movie.year.substring(0..3), backgroundColor = Color.White)
-                CapsuleText(text = "8.9", icon = R.drawable.star_ic, backgroundColor = Color.White)
+                CapsuleText(text = movie.rating.toString(), icon = R.drawable.star_ic, backgroundColor = Color.White)
             }
             Spacer(modifier = Modifier.height(8.dp))
         }

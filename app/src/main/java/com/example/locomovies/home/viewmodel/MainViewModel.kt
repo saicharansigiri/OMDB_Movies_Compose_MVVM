@@ -27,7 +27,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepository) :
     ViewModel() {
 
-    private val _sortOrder = MutableStateFlow(SortOrder.RATING_DESCENDING)
+    private val _sortOrder = MutableStateFlow(SortOrder.YEAR_ASCENDING)
     val sortOrder: StateFlow<SortOrder> = _sortOrder.asStateFlow()
 
     private val _searchQuery = MutableStateFlow("")
@@ -37,7 +37,10 @@ class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepo
         _searchQuery.value = query
     }
 
-    // Flow of PagingData that is tied to the current search query
+    fun updateSortOrder(newSortOrder: SortOrder){
+        _sortOrder.value = newSortOrder
+    }
+
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     val movies: Flow<PagingData<Movie>> = _searchQuery
         .debounce(300)
